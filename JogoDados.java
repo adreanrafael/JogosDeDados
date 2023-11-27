@@ -12,6 +12,30 @@ public abstract class JogoDados {
         this.dados = dados;
     }
 
+    public int getnDados() {
+        return nDados;
+    }
+
+    public void setnDados(int nDados) {
+        this.nDados = nDados;
+    }
+
+    public String getNomeJogo() {
+        return nomeJogo;
+    }
+
+    public void setNomeJogo(String nomeJogo) {
+        this.nomeJogo = nomeJogo;
+    }
+
+    public float getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(float saldo) {
+        this.saldo = saldo;
+    }
+
     public Dado[] getDados(){
         return dados;
     }

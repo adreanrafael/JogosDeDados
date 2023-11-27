@@ -1,10 +1,29 @@
 public class JogoGeneral extends JogoDados {
-    private int[] valoresJogadas = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
+    private int[] valoresJogadas;
+    private int somaDados;
 
-    public JogoGeneral(int nDados, String nomeJogo, float saldo, Dado[] dados) {
+    public JogoGeneral(int nDados, String nomeJogo, float saldo, Dado[] dados, int[] vjogadas) {
         super(nDados, nomeJogo, saldo, dados);
-        // TODO Auto-generated constructor stub
+        valoresJogadas = vjogadas;
+        somaDados = 0;
     }
+
+    public int[] getValoresJogadas() {
+        return valoresJogadas;
+    }
+
+    public void setValoresJogadas(int[] valoresJogadas) {
+        this.valoresJogadas = valoresJogadas;
+    }
+
+    public int setSomaDados() {    // metodo que retorna a soma dos valores das faces voltadas para cima dos cinco dados 
+        somaDados = 0;  // zerar a cada jogada
+        for (int i = 0; i < super.getDados().length; i++) {
+            somaDados += super.getDados()[i].getSideUp();
+        }
+        return somaDados;
+    }
+
 
     public boolean validarJogada(int num) { // metodo que verifica se uma jogada pontua ou nao(true ou false) para o conjunto de dados encapsulado
         if (num <= 6 && num > 0) {  // verifica as jogadas de 1 a 6
@@ -185,5 +204,130 @@ public class JogoGeneral extends JogoDados {
         }
     }
 
+    public void pontuarJogada(int j) { // metodo que recebe uma variavel inteira como parametro e atribui uma pontuacao no vetor jogadas para respectiva jogada
+        if (j >= 1 && j <= 6) { // pontua jogadas de 1 a 6 no vetor de jogadas
+            if (validarJogada(j) == true) { // verificar se a jodada e valida
+                int cont = 0; // variavael contaroa auxiliar para armazenar ocorrencia
+
+                for (int i = 0; i < super.getDados().length; i++) {
+                    if (super.getDados()[i].getSideUp() == j) {
+                        cont++;     // contar occorrencia do valor ecolhido
+                    }
+                }
+                if (valoresJogadas[j - 1] == -1) {     // verificar se a jogada ainda nao foi realizada
+                    valoresJogadas[j - 1] = cont * j;  // caso nao foi realizada ainda, atribuir a pontuacao
+                } else {
+                    System.out.println("Jogada ja realizada!"); // caso ja foi realizada imprime uma menssagem e nao atribuir pontuacao alguma
+                }
+            } else { // caso jogada nao valida 
+                if (valoresJogadas[j - 1] == -1) {     //verificar se a jogada ja foi realizada
+                    valoresJogadas[j - 1] = 0;         // caso nao foi realizada atribuir pontuacao zero
+                } else {
+                    System.out.println("Jogada ja realizada!");  // caso ja foi realizada imprimir uma menssagem e nao pontua
+                }
+            }
+
+        } else if (j == 7) {    // pontua jogada de trinca(7) no vetor de jogadas
+            if (validarJogada(j) == true) { // verificar se a jodada e valida
+                if (valoresJogadas[j - 1] == -1) {     // verificar se a jogada ainda nao foi realizada
+                    valoresJogadas[j - 1] = this.setSomaDados();  // caso nao foi realizada ainda, atribuir a respectiva pontuacao
+                } else { // caso ja foi realizada imprime uma menssagem e nao atribui pontuacao alguma
+                    System.out.println("Jogada já realizada!");
+                }
+            } else { // caso jogada nao valida 
+                if (valoresJogadas[j - 1] == -1) {  // verificar se a jogada ainda nao foi realizada
+                    valoresJogadas[j - 1] = 0;     // atribuir pontuacao zero
+                } else {    // caso jogada ja realizada, imprimir mensagem e nao pontuar
+                    System.out.println("Jogada já realizada!");
+                }
+            }
+
+            // repete o mesmo procedimento do caso acima para as outras jogadas
+        } else if (j == 8) {
+            if (validarJogada(j) == true) {
+                if (valoresJogadas[j - 1] == -1) {
+                    valoresJogadas[j - 1] = this.setSomaDados();
+                } else {
+                    System.out.println("Jogada já realizada!");
+                }
+            } else {
+                if (valoresJogadas[j - 1] == -1) {
+                    valoresJogadas[j - 1] = 0;
+                } else {
+                    System.out.println("Jogada já realizada!");
+                }
+            }
+        } else if (j == 9) {
+            if (validarJogada(j) == true) {
+                if (valoresJogadas[j - 1] == -1) {
+                    valoresJogadas[j - 1] = 25;
+                } else {
+                    System.out.println("Jogada já realizada!");
+                }
+            } else {
+                if (valoresJogadas[j - 1] == -1) {
+                    valoresJogadas[j - 1] = 0;
+                } else {
+                    System.out.println("Jogada já realizada!");
+                }
+            }
+        } else if (j == 10) {
+            if (validarJogada(j) == true) {
+                if (valoresJogadas[j - 1] == -1) {
+                    valoresJogadas[j - 1] = 30;
+                } else {
+                    System.out.println("Jogada já realizada!");
+                }
+            } else {
+                if (valoresJogadas[j - 1] == -1) {
+                    valoresJogadas[j - 1] = 0;
+                } else {
+                    System.out.println("Jogada já realizada!");
+                }
+            }
+        } else if (j == 11) {
+            if (validarJogada(j) == true) {
+                if (valoresJogadas[j - 1] == -1) {
+                    valoresJogadas[j - 1] = 40;
+                } else {
+                    System.out.println("Jogada já realizada!");
+                }
+            } else {
+                if (valoresJogadas[j - 1] == -1) {
+                    valoresJogadas[j - 1] = 0;
+                } else {
+                    System.out.println("Jogada já realizada!");
+                }
+            }
+        } else if (j == 12) {
+            if (validarJogada(j) == true) {
+                if (valoresJogadas[j - 1] == -1) {
+                    valoresJogadas[j - 1] = 50;
+                } else {
+                    System.out.println("Jogada já realizada!");
+                }
+            } else {
+                if (valoresJogadas[j - 1] == -1) {
+                    valoresJogadas[j - 1] = 0;
+                } else {
+                    System.out.println("Jogada já realizada!");
+                }
+            }
+        } else if (j == 13) {
+            if (validarJogada(j) == true) {
+                if (valoresJogadas[j - 1] == -1) {
+                    valoresJogadas[j - 1] = this.setSomaDados();
+                } else {
+                    System.out.println("Jogada já realizada!");
+                }
+            } else {
+                if (valoresJogadas[j - 1] == -1) {
+                    valoresJogadas[j - 1] = 0;
+                } else {
+                    System.out.println("Jogada já realizada!");
+                }
+            }
+        }
+    }
 
 }
