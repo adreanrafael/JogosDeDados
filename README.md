@@ -1,2 +1,3 @@
 # JogosDeDados
-Jogos de dados
+Jogos de dados em desenvolvimento
+
